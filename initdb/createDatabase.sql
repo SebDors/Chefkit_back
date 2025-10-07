@@ -49,7 +49,8 @@ COMMENT ON TABLE utilisateurs IS 'Contient les informations des comptes utilisat
 -- =============================================================================
 CREATE TABLE ingredients (
     id_ingredient SERIAL PRIMARY KEY,
-    nom_ingredient VARCHAR(100) UNIQUE NOT NULL
+    nom_ingredient VARCHAR(100) UNIQUE NOT NULL,
+    path_image VARCHAR(255)
 );
 
 COMMENT ON TABLE ingredients IS 'Liste de tous les ingrédients possibles pouvant être utilisés dans les recettes.';
@@ -67,7 +68,8 @@ CREATE TABLE recettes (
         temps_preparation_minutes >= 0
     ),
     temps_cuisson_minutes INT CHECK (temps_cuisson_minutes >= 0),
-    nombre_personnes INT CHECK (nombre_personnes > 0)
+    nombre_personnes INT CHECK (nombre_personnes > 0),
+    path_image VARCHAR(255)
 );
 
 COMMENT ON TABLE recettes IS 'Contient les détails de chaque recette disponible dans l''application.';
