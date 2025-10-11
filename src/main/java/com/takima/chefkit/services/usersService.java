@@ -3,6 +3,7 @@ package com.takima.chefkit.services;
 import java.io.IOException;
 import java.util.List;
 
+import com.takima.chefkit.DTO.loginDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,10 +52,10 @@ public class usersService {
         return usersDAO.save(existingUser);
     }
 
-    public ResponseEntity<String> loginUsers(usersDTO userDto) {
+    public ResponseEntity<String> loginUsers(loginDTO loginDto) {
         try {
-            usersModel existingUser = usersDAO.findByNomUtilisateurContainingIgnoreCase(userDto.getNomUtilisateur());
-            if (existingUser.getMotDePasse().equals(userDto.getMotDePasse())) {
+            usersModel existingUser = usersDAO.findByNomUtilisateurContainingIgnoreCase(loginDto.getNomUtilisateur());
+            if (existingUser.getMotDePasse().equals(loginDto.getMotDePasse())) {
                 return ResponseEntity.ok("Login successful");
             } else {
                 return ResponseEntity.status(401).body("Mot de passe incorrect");

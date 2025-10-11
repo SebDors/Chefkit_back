@@ -2,6 +2,7 @@ package com.takima.chefkit.controllers;
 
 import java.util.List;
 
+import com.takima.chefkit.DTO.loginDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,8 +54,8 @@ public class usersController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody usersDTO userDTO) {
-        System.out.println(userDTO);
-        return usersService.loginUsers(userDTO);
+    public ResponseEntity<String> loginUser(@RequestBody loginDTO loginDto) {
+        System.out.println(loginDto);
+        return usersService.loginUsers(loginDto);
     }
 }
