@@ -186,7 +186,11 @@ VALUES ('Tomate'),
     ('Spaguetti');
 
 INSERT INTO
-    utilisateurs (nom_utilisateur, email, mot_de_passe)
+    utilisateurs (
+        nom_utilisateur,
+        email,
+        mot_de_passe
+    )
 VALUES (
         'seb',
         'dorssebastien',
@@ -197,14 +201,21 @@ VALUES (
         'margaultmons',
         'password'
     ),
-    ( 
+    (
         'camille',
         'camgra',
         'password'
     );
 
 INSERT INTO
-    recettes (titre, description, instructions, temps_preparation_minutes, temps_cuisson_minutes, nombre_personnes)
+    recettes (
+        titre,
+        description,
+        instructions,
+        temps_preparation_minutes,
+        temps_cuisson_minutes,
+        nombre_personnes
+    )
 VALUES (
         'Avocado Toast',
         'Une tartine à l''avocat simple et délicieuse, parfaite pour le petit-déjeuner ou le brunch.',
@@ -244,6 +255,47 @@ VALUES (
         15,
         30,
         6
-    )
-    ;
+    );
 
+INSERT INTO
+    recette_ingredients (
+        id_recette,
+        id_ingredient,
+        quantite,
+        unite
+    )
+VALUES
+    -- Avocado Toast (recette_id=1)
+    (1, 19, '1', 'unité'), -- Avocat
+    (1, 10, '2', 'tranches'), -- Pain
+    (1, 5, '1', 'pincée'), -- Sel
+    (1, 6, '1', 'pincée'), -- Poivre noir
+    (1, 20, '0.5', 'unité'), -- Citron
+    -- Pizza Regina (recette_id=2)
+    (2, 61, '1', 'unité'), -- Pate à pizza
+    (2, 183, '200', 'g'), -- Sauce Tomate (CORRIGÉ: ID 199 au lieu de 200)
+    (2, 66, '125', 'g'), -- Mozzarella
+    (2, 25, '2', 'tranches'), -- Jambon
+    (2, 31, '50', 'g'), -- Champignons
+    -- Soupe froide de concombre (recette_id=3)
+    (3, 21, '1', 'unité'), -- Concombre
+    (3, 35, '1', 'pot'), -- Yaourt
+    (3, 180, '10', 'feuilles'), -- Menthe
+    (3, 5, '1', 'pincée'), -- Sel
+    (3, 6, '1', 'pincée'), -- Poivre noir
+    -- Pancakes aux myrtilles (recette_id=4)
+    (4, 14, '250', 'g'), -- Farine
+    (4, 13, '50', 'g'), -- Sucre
+    (4, 16, '1', 'sachet'), -- Levure
+    (4, 5, '1', 'pincée'), -- Sel
+    (4, 15, '2', 'unités'), -- Œufs
+    (4, 12, '30', 'cl'), -- Lait
+    (4, 11, '50', 'g'), -- Beurre
+    (4, 64, '100', 'g'), -- Myrtille
+    -- Moelleux au chocolat (recette_id=5)
+    (5, 17, '200', 'g'), -- Chocolat
+    (5, 11, '150', 'g'), -- Beurre
+    (5, 15, '4', 'unités'), -- Œufs
+    (5, 13, '100', 'g'), -- Sucre
+    (5, 14, '50', 'g');
+-- Farine
