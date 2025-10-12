@@ -9,6 +9,7 @@ import com.takima.chefkit.DAO.recettesDAO;
 import com.takima.chefkit.DTO.recettesDTO;
 import com.takima.chefkit.DTO.recettesMapper;
 import com.takima.chefkit.models.recettesModel;
+import com.takima.chefkit.DTO.IngredientDetailDTO;
 
 @Service
 @Transactional
@@ -27,6 +28,10 @@ public class recettesService {
     @Transactional(readOnly = true)
     public recettesModel findRecetteById(int id) {
         return recettesDAO.findById((long) id).orElseThrow();
+    }
+
+    public List<IngredientDetailDTO> findIngredientsByRecipeId(int id) {
+        return recettesDAO.findIngredientsByRecipeId((long) id);
     }
 
     public void deleteRecette(int id) {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.takima.chefkit.DTO.recettesDTO;
 import com.takima.chefkit.models.recettesModel;
 import com.takima.chefkit.services.recettesService;
+import com.takima.chefkit.DTO.IngredientDetailDTO;
 
 @RestController
 @RequestMapping("/recettes")
@@ -33,6 +34,11 @@ public class recettesController {
     @GetMapping("/{id}")
     public recettesModel getRecetteById(@PathVariable int id) {
         return recettesService.findRecetteById(id);
+    }
+
+    @GetMapping("/{id}/ingredients")
+    public List<IngredientDetailDTO> getIngredientsByRecipeId(@PathVariable int id) {
+        return recettesService.findIngredientsByRecipeId(id);
     }
 
     @DeleteMapping("/{id}")
