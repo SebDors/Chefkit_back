@@ -300,7 +300,34 @@ VALUES (
         15,
         30,
         6,
-        '/assets/images/moelleux_chocolat.jpg'
+        '/assets/images/recipe-moelleux_aux_chocolats.jpg'
+    ),
+    (
+        'Tartelette aux fraises',
+        'De délicieuses tartelettes garnies de fraises fraîches et de crème pâtissière.',
+        '1. Préchauffez le four à 180°C. 2. Étalez la pâte sablée dans des moules à tartelette et faites cuire à blanc pendant 15 minutes. 3. Préparez la crème pâtissière en chauffant le lait avec la vanille, puis en mélangeant les jaunes d''œufs, le sucre et la farine avant d''incorporer le lait chaud. 4. Laissez refroidir la crème pâtissière, puis garnissez les tartelettes avec la crème et disposez les fraises sur le dessus.',
+        30,
+        15,
+        4,
+        '/assets/images/recipe-tartelette_à_la_fraise.jpg'
+    ),
+    (
+        'Steak frites',
+        'Un classique français avec un steak juteux et des frites croustillantes.',
+        '1. Assaisonnez le steak avec du sel et du poivre. 2. Faites chauffer une poêle avec un peu d''huile et faites cuire le steak à votre goût. 3. Pendant ce temps, faites cuire les frites surgelées selon les instructions du paquet. 4. Servez le steak avec les frites et une salade verte.',
+        10,
+        15,
+        2,
+        '/assets/images/recipe-steak_frites.jpg'
+    ),
+    (
+        'Burger vegétarien',
+        'Un burger savoureux avec un steak végétarien, du fromage et des légumes frais.',
+        '1. Faites griller le steak végétarien selon les instructions du paquet. 2. Faites légèrement griller les pains à burger. 3. Garnissez le pain inférieur avec de la salade, une tranche de tomate, le steak végétarien, une tranche de fromage, des rondelles d''oignon et de la sauce de votre choix. 4. Couvrez avec le pain supérieur et servez avec des frites ou une salade.',
+        15,
+        10,
+        2,
+        '/assets/images/recipe-burger_végétal.jpg'
     );
 
 INSERT INTO
