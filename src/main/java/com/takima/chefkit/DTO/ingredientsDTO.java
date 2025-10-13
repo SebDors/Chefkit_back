@@ -1,0 +1,19 @@
+package com.takima.chefkit.DTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class ingredientsDTO {
+    private int idIngredient;
+    private String nomIngredient;
+    private String categorie;
+    private String pathIngredient;
+}
