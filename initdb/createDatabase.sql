@@ -50,8 +50,7 @@ COMMENT ON TABLE utilisateurs IS 'Contient les informations des comptes utilisat
 CREATE TABLE ingredients (
     id_ingredient SERIAL PRIMARY KEY,
     nom_ingredient VARCHAR(100) UNIQUE NOT NULL,
-    categorie VARCHAR(10),
-    path_image VARCHAR(255)
+    categorie VARCHAR(10)
 );
 
 COMMENT ON TABLE ingredients IS 'Liste de tous les ingrédients possibles pouvant être utilisés dans les recettes.';

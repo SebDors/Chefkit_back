@@ -42,7 +42,6 @@ public class recettesService {
         return recettesDAO.save(recettesMapper.fromDto(recetteDto));
     }
 
-    // TODO: Est-ce qu'on peut mettre un builder ?
     public recettesModel updateRecette(int id, recettesDTO recetteDto) {
         recettesModel existingRecette = recettesDAO.findById((long) id).orElseThrow();
         existingRecette.setTitre(recetteDto.getTitre());
