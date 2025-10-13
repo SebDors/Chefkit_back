@@ -1,6 +1,7 @@
 package com.takima.chefkit.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import com.takima.chefkit.DTO.loginDTO;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +60,7 @@ public class usersController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody loginDTO loginDto) {
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody loginDTO loginDto) {
         System.out.println(loginDto);
         return usersService.loginUsers(loginDto);
     }

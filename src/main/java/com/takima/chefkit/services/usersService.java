@@ -1,7 +1,9 @@
 package com.takima.chefkit.services;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.takima.chefkit.DTO.loginDTO;
 import org.springframework.http.ResponseEntity;
@@ -52,17 +54,20 @@ public class usersService {
         return usersDAO.save(existingUser);
     }
 
-    public ResponseEntity<String> loginUsers(loginDTO loginDto) {
-        try {
-            usersModel existingUser = usersDAO.findByNomUtilisateurContainingIgnoreCase(loginDto.getNomUtilisateur());
-            if (existingUser.getMotDePasse().equals(loginDto.getMotDePasse())) {
-                return ResponseEntity.ok("Login successful");
-            } else {
-                return ResponseEntity.status(401).body("Mot de passe incorrect");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return ResponseEntity.status(404).body("Utilisateur non trouvé");
+    public ResponseEntity<Map<String, Object>> loginUsers(loginDTO loginDto) {
+        usersModel existingUser = usersDAO.findByNomUtilisateurContainingIgnoreCase(loginDto.getNomUtilisateur());
+
+        if (existingUser == null) {
+            return ResponseEntity.status(404).body(Map.of("message", "Utilisateur non trouvé"));
+        }
+
+        if (existingUser.getMotDePasse().equals(loginDto.getMotDePasse())) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Login successful");
+            response.put("role", existingUser.getRole());
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(401).body(Map.of("message", "Mot de passe incorrect"));
         }
     }
 
