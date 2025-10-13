@@ -9,6 +9,7 @@ public class usersMapper {
         userDto.setNomUtilisateur(user.getNomUtilisateur());
         userDto.setEmail(user.getEmail());
         userDto.setMotDePasse(user.getMotDePasse());
+        userDto.setRole(user.getRole());
         return userDto;
     }
 
@@ -18,6 +19,7 @@ public class usersMapper {
         user.setNomUtilisateur(userDto.getNomUtilisateur());
         user.setEmail(userDto.getEmail());
         user.setMotDePasse(userDto.getMotDePasse());
+        user.setRole(userDto.getRole());
         return user;
     }
 }

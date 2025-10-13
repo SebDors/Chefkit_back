@@ -35,6 +35,8 @@ public class usersModel {
     @Column
     private String motDePasse;
     @Column
+    private String role;
+    @Column
     private LocalDateTime dateCreation;
 
 }
