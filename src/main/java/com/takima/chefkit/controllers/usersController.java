@@ -38,6 +38,11 @@ public class usersController {
         return usersService.findUserById(id);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getUserCount() {
+        return usersService.getUserCount();
+    }
+
     @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable int id) {
         usersService.deleteUser(id);

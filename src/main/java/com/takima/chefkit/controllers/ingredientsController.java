@@ -33,6 +33,11 @@ public class ingredientsController {
         return ingredientsService.findIngredientById(id);
     }
 
+    @GetMapping("/count")
+    public int getIngredientCount() {
+        return ingredientsService.getIngredientCount();
+    }
+
     @PostMapping("")
     public void createIngredient(ingredientsDTO ingredient) {
         ingredientsService.addIngredient(ingredient);

@@ -66,4 +66,8 @@ public class usersService {
         }
     }
 
+    public ResponseEntity<Integer> getUserCount() {
+        int user = (int) usersDAO.count();
+        return ResponseEntity.ok(user);
+    }
 }

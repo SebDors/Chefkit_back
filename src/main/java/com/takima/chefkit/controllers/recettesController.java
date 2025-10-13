@@ -2,6 +2,7 @@ package com.takima.chefkit.controllers;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,11 @@ public class recettesController {
     @GetMapping("/{id}/ingredients")
     public List<IngredientDetailDTO> getIngredientsByRecipeId(@PathVariable int id) {
         return recettesService.findIngredientsByRecipeId(id);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getRecetteCount() {
+        return recettesService.getRecetteCount();
     }
 
     @DeleteMapping("/{id}")

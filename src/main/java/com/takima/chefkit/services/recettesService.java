@@ -2,6 +2,7 @@ package com.takima.chefkit.services;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +53,10 @@ public class recettesService {
         existingRecette.setNombrePersonnes(recetteDto.getNombrePersonnes());
         existingRecette.setPathImage(recetteDto.getPathImage());
         return recettesDAO.save(existingRecette);
+    }
+
+    public ResponseEntity<Integer> getRecetteCount() {
+        int recette = (int) recettesDAO.count();
+        return ResponseEntity.ok(recette);
     }
 }

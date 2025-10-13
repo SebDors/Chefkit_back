@@ -41,4 +41,8 @@ public class ingredientsService {
         existingIngredient.setCategorie(ingredientsDto.getCategorie());
         return ingredientsDao.save(existingIngredient);
     }
+
+    public int getIngredientCount() {
+        return (int) ingredientsDao.count();
+    }
 }
