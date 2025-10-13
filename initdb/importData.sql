@@ -214,7 +214,8 @@ INSERT INTO
         instructions,
         temps_preparation_minutes,
         temps_cuisson_minutes,
-        nombre_personnes
+        nombre_personnes,
+        path_image
     )
 VALUES (
         'Avocado Toast',
@@ -222,7 +223,8 @@ VALUES (
         '1. Faites griller le pain. 2. Écrasez l''avocat dans un bol et assaisonnez avec du sel, du poivre et du jus de citron. 3. Étalez l''avocat sur le pain grillé et ajoutez des toppings au choix.',
         5,
         5,
-        1
+        1,
+        '/assets/images/avocado_toast.jpg'
     ),
     (
         'Pizza Regina',
@@ -230,7 +232,8 @@ VALUES (
         '1. Préchauffez le four à 220°C. 2. Étalez la pâte à pizza sur une plaque de cuisson. 3. Étalez la sauce tomate sur la pâte, puis ajoutez la mozzarella, le jambon et les champignons. 4. Enfournez pendant 12-15 minutes jusqu''à ce que la pâte soit dorée.',
         20,
         15,
-        2
+        2,
+        '/assets/images/pizza_regina.jpg'
     ),
     (
         'Soupe froide de concombre',
@@ -238,7 +241,8 @@ VALUES (
         '1. Épluchez et coupez les concombres en morceaux. 2. Dans un mixeur, ajoutez les concombres, le yaourt, la menthe, le sel et le poivre. 3. Mixez jusqu''à obtenir une consistance lisse. 4. Réfrigérez pendant au moins 30 minutes avant de servir.',
         10,
         0,
-        4
+        4,
+        '/assets/images/soupe_concombre.jpg'
     ),
     (
         'Pancakes aux myrtilles',
@@ -246,7 +250,8 @@ VALUES (
         '1. Dans un bol, mélangez la farine, le sucre, la levure chimique et une pincée de sel. 2. Dans un autre bol, battez l''œuf, puis ajoutez le lait et le beurre fondu. 3. Incorporez les ingrédients secs aux ingrédients liquides jusqu''à obtenir une pâte homogène. 4. Ajoutez les myrtilles à la pâte. 5. Faites chauffer une poêle antiadhésive et versez des petites louches de pâte pour former les pancakes. Faites cuire jusqu''à ce que des bulles se forment à la surface, puis retournez-les et faites cuire l''autre côté jusqu''à ce qu''il soit doré.',
         10,
         5,
-        4
+        4,
+        '/assets/images/pancakes_myrtilles.jpg'
     ),
     (
         'Moelleux au chocolat',
@@ -254,7 +259,8 @@ VALUES (
         '1. Préchauffez le four à 180°C. 2. Faites fondre le chocolat et le beurre au bain-marie. 3. Dans un bol, battez les œufs et le sucre jusqu''à ce que le mélange blanchisse. 4. Incorporez le mélange chocolat-beurre, puis ajoutez la farine. 5. Versez la pâte dans des moules individuels et enfournez pendant 10-12 minutes.',
         15,
         30,
-        6
+        6,
+        '/assets/images/moelleux_chocolat.jpg'
     );
 
 INSERT INTO
