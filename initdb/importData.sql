@@ -219,22 +219,32 @@ INSERT INTO
     utilisateurs (
         nom_utilisateur,
         email,
-        mot_de_passe
+        mot_de_passe,
+        role
     )
 VALUES (
         'seb',
         'dorssebastien',
-        'password'
+        'password',
+        'admin'
     ),
     (
         'margault',
         'margaultmons',
-        'password'
+        'password',
+        'admin'
     ),
     (
         'camille',
         'camgra',
-        'password'
+        'password',
+        'admin'
+    ),
+    (
+        'test',
+        'testtest',
+        'password',
+        'user'
     );
 
 INSERT INTO

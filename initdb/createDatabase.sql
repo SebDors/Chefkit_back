@@ -38,7 +38,8 @@ CREATE TABLE utilisateurs (
     nom_utilisateur VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     mot_de_passe VARCHAR(255) NOT NULL,
-    date_creation TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+    date_creation TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    role VARCHAR(20) DEFAULT 'user' CHECK (role IN ('user', 'admin'))
 );
 
 COMMENT ON TABLE utilisateurs IS 'Contient les informations des comptes utilisateurs.';
