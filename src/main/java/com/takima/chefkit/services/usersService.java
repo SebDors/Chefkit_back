@@ -46,12 +46,12 @@ public class usersService {
         }
     }
 
-    public usersModel updateUsers(int id, usersDTO userDto) {
+    public void updateUsersById(int id, usersDTO userDto) {
         usersModel existingUser = usersDAO.findById((long) id).orElseThrow();
         existingUser.setNomUtilisateur(userDto.getNomUtilisateur());
         existingUser.setEmail(userDto.getEmail());
         existingUser.setMotDePasse(userDto.getMotDePasse());
-        return usersDAO.save(existingUser);
+        usersDAO.save(existingUser);
     }
 
     public ResponseEntity<Map<String, Object>> loginUsers(loginDTO loginDto) {
@@ -74,5 +74,28 @@ public class usersService {
     public ResponseEntity<Integer> getUserCount() {
         int user = (int) usersDAO.count();
         return ResponseEntity.ok(user);
+    }
+
+    public void updateUserByUsername(String username, usersDTO usersDto) {
+        usersModel existingUser = usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
+        if (existingUser != null) {
+            if (usersDto.getNomUtilisateur() != null && !usersDto.getNomUtilisateur().trim().isEmpty()) {
+                existingUser.setNomUtilisateur(usersDto.getNomUtilisateur());
+            }
+            if (usersDto.getEmail() != null && !usersDto.getEmail().trim().isEmpty()) {
+                existingUser.setEmail(usersDto.getEmail());
+            }
+            if (usersDto.getMotDePasse() != null && !usersDto.getMotDePasse().trim().isEmpty()) {
+                existingUser.setMotDePasse(usersDto.getMotDePasse());
+            }
+            if (usersDto.getRole() != null && !usersDto.getRole().trim().isEmpty()) {
+                existingUser.setRole(usersDto.getRole());
+            }
+            usersDAO.save(existingUser);
+        }
+    }
+
+    public void deleteUserByUsername(String username) {
+        usersDAO.deleteByNomUtilisateurContainingIgnoreCase(username);
     }
 }

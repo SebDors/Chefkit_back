@@ -44,24 +44,29 @@ public class usersController {
         return usersService.getUserCount();
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteUserById(@PathVariable int id) {
-        usersService.deleteUser(id);
-    }
-
     @PostMapping("")
-    public void createUser(@RequestBody usersDTO usersDTO) {
-        usersService.addUsers(usersDTO);
+    public void createUser(@RequestBody usersDTO usersDto) {
+        usersService.addUsers(usersDto);
     }
 
     @PostMapping("/{id}")
-    public void updateUser(@PathVariable int id, @RequestBody usersDTO usersDTO) {
-        usersService.updateUsers(id, usersDTO);
+    public void updateUserById(@PathVariable int id, @RequestBody usersDTO usersDto) {
+        usersService.updateUsersById(id, usersDto);
     }
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> loginUser(@RequestBody loginDTO loginDto) {
         System.out.println(loginDto);
         return usersService.loginUsers(loginDto);
+    }
+
+    @PostMapping("/update/{username}")
+    public void updateUsersByUsername (@PathVariable String username, @RequestBody usersDTO usersDto) {
+        usersService.updateUserByUsername(username, usersDto);
+    }
+
+    @DeleteMapping("/delete/{username}")
+    public void deleteUserByUsername(@PathVariable String username) {
+        usersService.deleteUserByUsername(username);
     }
 }
