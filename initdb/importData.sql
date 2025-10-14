@@ -282,7 +282,7 @@ VALUES (
         10,
         0,
         4,
-        '/assets/images/soupe_concombre.jpg'
+        '/assets/images/recipe-soupe_concombre.jpg'
     ),
     (
         'Pancakes aux myrtilles',
@@ -305,7 +305,7 @@ VALUES (
     (
         'Tartelette aux fraises',
         'De délicieuses tartelettes garnies de fraises fraîches et de crème pâtissière.',
-        '1. Préchauffez le four à 180°C. 2. Étalez la pâte sablée dans des moules à tartelette et faites cuire à blanc pendant 15 minutes. 3. Préparez la crème pâtissière en chauffant le lait avec la vanille, puis en mélangeant les jaunes d''œufs, le sucre et la farine avant d''incorporer le lait chaud. 4. Laissez refroidir la crème pâtissière, puis garnissez les tartelettes avec la crème et disposez les fraises sur le dessus.',
+        '1. Préchauffez le four à 180°C. 2. Étalez la pâte feuilletée dans des moules à tartelette et faites cuire à blanc pendant 15 minutes. 3. Préparez la crème pâtissière en chauffant le lait avec la vanille, puis en mélangeant les jaunes d''œufs, le sucre et la farine avant d''incorporer le lait chaud. 4. Laissez refroidir la crème pâtissière, puis garnissez les tartelettes avec la crème et disposez les fraises sur le dessus.',
         30,
         15,
         4,
@@ -328,6 +328,33 @@ VALUES (
         10,
         2,
         '/assets/images/recipe-burger_végétal.jpg'
+    ),
+    (
+        'Croque monsieur',
+        'Un sandwich chaud classique français avec du jambon et du fromage fondu.',
+        '1. Préchauffez le grill. 2. Tartinez les tranches de pain de beurre. 3. Disposez une tranche de jambon et une tranche de fromage entre deux tranches de pain. 4. Faites griller le sandwich jusqu''à ce qu''il soit doré et le fromage fondu.',
+        10,
+        5,
+        2,
+        '/assets/images/recipe-croque_monsieur.jpg'
+    ),
+    (
+        'Pad Thaï à l''oeuf',
+        'Un plat thaïlandais populaire à base de nouilles de riz sautées avec des crevettes, du tofu, des œufs et des légumes.',
+        '1. Faites tremper les nouilles de riz dans de l''eau chaude pendant 30 minutes. 2. Dans un wok, faites chauffer de l''huile et ajoutez les crevettes et le tofu. 3. Ajoutez les œufs battus et les nouilles égouttées. 4. Incorporez la sauce soja et les légumes. 5. Faites sauter le tout pendant quelques minutes et servez chaud.',
+        30,
+        15,
+        4,
+        '/assets/images/recipe-pad_thai_oeuf.jpg'
+    ),
+    (
+        'Lasagnes végétariennes',
+        'Des lasagnes savoureuses avec des légumes grillés, de la sauce tomate et de la béchamel.',
+        '1. Préchauffez le four à 180°C. 2. Faites griller les légumes (courgettes, aubergines, poivrons) et préparez la sauce tomate. 3. Préparez la béchamel en chauffant le lait avec du beurre et de la farine. 4. Dans un plat à gratin, alternez des couches de pâtes à lasagne, de légumes grillés, de sauce tomate et de béchamel. 5. Terminez par une couche de béchamel et saupoudrez de fromage râpé.',
+        60,
+        45,
+        6,
+        '/assets/images/recipe-lasagnes_aux_légumes_de_soleil.jpg'
     );
 
 INSERT INTO
@@ -370,5 +397,49 @@ VALUES
     (5, 11, '150', 'g'), -- Beurre
     (5, 15, '4', 'unités'), -- Œufs
     (5, 13, '100', 'g'), -- Sucre
-    (5, 14, '50', 'g');
--- Farine
+    (5, 14, '50', 'g'), -- Farine
+    -- Tartelette aux fraises (recette_id=6)
+    (6, 80, '200', 'g'), -- Pate feuilletée
+    (6, 83, '500', 'ml'), -- Crème pâtissière
+    (6, 90, '200', 'g'), -- Fraise
+    -- Steak frites (recette_id=7)
+    (7, 109, '2', 'steaks'), -- Steak
+    (7, 136, '300', 'g'), -- frites surgelées
+    (7, 5, '1', 'pincée'), -- Sel
+    (7, 6, '1', 'pincée'), -- Poivre noir
+    (7, 139, '500', 'g'), -- Salade
+    -- Burger vegétarien (recette_id=8)
+    (8, 138, '2', 'steaks vegetariens'), -- Steak vegetariens
+    (8, 176, '2', 'pains burger'), -- Pain Burger
+    (8, 150, '2', 'tranches'), -- Cheddar
+    (8, 139, '100', 'g'), -- Salade
+    (8, 1, '1', 'tranche'), -- Tomate
+    (8, 4, '1', 'oignon'), -- Oignon
+    (8, 5, '1', 'pincée'), -- Sel
+    (8, 6, '1', 'pincée'), -- Poivre noir
+    -- Croque monsieur (recette_id=9)
+    (9, 140, '4', 'tranches'), -- Pain de mie
+    (9, 25, '2', 'tranches'), -- Jambon
+    (9, 24, '2', 'tranches'), -- Fromage
+    (9, 11, '20', 'g'), -- Beurre
+    -- Pad Thaï à l'oeuf (recette_id=10)
+    (10, 174, '200', 'g'), -- Nouilles de riz
+    (10, 183, '200', 'g'), -- Crevettes
+    (10, 172, '100', 'g'), -- Tofu
+    (10, 15, '2', 'unités'), -- Œufs
+    (10, 57, '57', 'ml'), -- Sauce soja
+    (10, 22, '1', 'carotte'), -- Carotte
+    (10, 2, '1', 'oignon'), -- Oignon
+    (10, 5, '1', 'pincée'), -- Sel
+    (10, 6, '1', 'pincée'), -- Poivre noir
+    -- Lasagnes végétariennes (recette_id=11)
+    (11, 177, '250', 'g'), -- Pates à lasagne
+    (11, 129, '1', 'courgette'), -- Courgette
+    (11, 130, '1', 'aubergine'), -- Aubergine
+    (11, 23, '1', 'poivron'), -- Poivron
+    (11, 173, '400', 'g'), -- Sauce Tomate
+    (11, 178, '500', 'ml'), -- Bechamel
+    (11, 66, '100', 'g'); -- Fromage
+
+    
+    
