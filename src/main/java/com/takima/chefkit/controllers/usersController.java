@@ -35,8 +35,13 @@ public class usersController {
     }
 
     @GetMapping("/{id}")
-    public usersModel getStudentById(@PathVariable int id) {
+    public usersModel getuserById(@PathVariable int id) {
         return usersService.findUserById(id);
+    }
+
+    @GetMapping("/username/{username}")
+    public usersModel getUserByUsername(@PathVariable String username) {
+        return usersService.findUserByUsername(username);
     }
 
     @GetMapping("/count")
@@ -61,7 +66,7 @@ public class usersController {
     }
 
     @PostMapping("/update/{username}")
-    public void updateUsersByUsername (@PathVariable String username, @RequestBody usersDTO usersDto) {
+    public void updateUsersByUsername(@PathVariable String username, @RequestBody usersDTO usersDto) {
         usersService.updateUserByUsername(username, usersDto);
     }
 

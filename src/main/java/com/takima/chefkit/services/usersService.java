@@ -34,6 +34,11 @@ public class usersService {
         return usersDAO.findById((long) id).orElseThrow();
     }
 
+    @Transactional(readOnly = true)
+    public usersModel findUserByUsername(String username) {
+        return usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
+    }
+
     public void deleteUser(int id) {
         usersDAO.deleteById((long) id);
     }
