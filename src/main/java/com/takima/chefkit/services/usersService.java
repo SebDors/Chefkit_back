@@ -36,7 +36,7 @@ public class usersService {
 
     @Transactional(readOnly = true)
     public usersModel findUserByUsername(String username) {
-        return usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
+        return usersDAO.findByNomUtilisateur(username);
     }
 
     public void deleteUser(int id) {
