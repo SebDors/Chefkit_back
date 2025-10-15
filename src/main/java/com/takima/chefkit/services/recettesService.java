@@ -33,7 +33,7 @@ public class recettesService {
 
     @Transactional(readOnly = true)
     public recettesDTO getRecetteByTitre(String titre) {
-        recettesModel recette = recettesDAO.findByTitre(titre);
+        recettesModel recette = recettesDAO.findByTitreContainingIgnoreCase(titre);
         return recettesMapper.toDto(recette);
     }
 
@@ -46,7 +46,7 @@ public class recettesService {
     }
 
     public void deleteRecetteByTitre(String titre) {
-        recettesDAO.deleteByTitre(titre);
+        recettesDAO.deleteByTitreContainingIgnoreCase(titre);
     }
 
     public void addRecette(recettesDTO recetteDto) {
@@ -60,7 +60,7 @@ public class recettesService {
     }
 
     public void updateRecetteByTitre(String Titre, recettesDTO recetteDto) {
-        recettesModel existingRecette = recettesDAO.findByTitre(Titre);
+        recettesModel existingRecette = recettesDAO.findByTitreContainingIgnoreCase(Titre);
         if (existingRecette != null) {
             updateDtoToExistingModel(recetteDto, existingRecette);
             recettesDAO.save(existingRecette);
