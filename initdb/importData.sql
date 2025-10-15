@@ -409,7 +409,12 @@ VALUES
     (7, 6, '1', 'pincée'), -- Poivre noir
     (7, 139, '500', 'g'), -- Salade
     -- Burger vegétarien (recette_id=8)
-    (8, 138, '2', 'steaks vegetariens'), -- Steak vegetariens
+    (
+        8,
+        138,
+        '2',
+        'steaks vegetariens'
+    ), -- Steak vegetariens
     (8, 176, '2', 'pains burger'), -- Pain Burger
     (8, 150, '2', 'tranches'), -- Cheddar
     (8, 139, '100', 'g'), -- Salade
@@ -439,7 +444,38 @@ VALUES
     (11, 23, '1', 'poivron'), -- Poivron
     (11, 173, '400', 'g'), -- Sauce Tomate
     (11, 178, '500', 'ml'), -- Bechamel
-    (11, 66, '100', 'g'); -- Fromage
+    (11, 66, '100', 'g');
+-- Fromage
 
-    
-    
+INSERT INTO
+    frigo_utilisateur (id_utilisateur, id_ingredient)
+VALUES
+    -- Ingrédients pour l'utilisateur 'seb' (id_utilisateur=1)
+    (1, 1), -- Tomate
+    (1, 2), -- Oignon
+    (1, 3), -- Poitrine de poulet
+    (1, 4), -- Huile de Tournesol
+    (1, 5), -- Sel
+    (1, 6), -- Poivre noir
+    (1, 10), -- Pain
+    (1, 11), -- Beurre
+    (1, 15), -- Œufs
+    (1, 24), -- Fromage
+    -- Ingrédients pour l'utilisatrice 'margault' (id_utilisateur=2)
+    (2, 22), -- Carotte
+    (2, 23), -- Poivron
+    (2, 12), -- Lait
+    (2, 36), -- Crème fraîche
+    (2, 26), -- Saumon
+    (2, 25), -- Jambon
+    (2, 28), -- Pates
+    (2, 27), -- Riz
+    -- Ingrédients pour l'utilisatrice 'camille' (id_utilisateur=3)
+    (3, 96), -- Banane
+    (3, 94), -- Pomme
+    (3, 17), -- Chocolat
+    (3, 14), -- Farine
+    (3, 13), -- Sucre
+    (3, 164), -- Lait de coco
+    (3, 42);
+-- Curry
