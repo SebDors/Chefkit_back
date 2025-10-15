@@ -2,12 +2,7 @@ package com.takima.chefkit.controllers;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.takima.chefkit.DTO.ingredientsDTO;
 import com.takima.chefkit.models.ingredientsModel;
@@ -39,12 +34,12 @@ public class ingredientsController {
     }
 
     @PostMapping("")
-    public void createIngredient(ingredientsDTO ingredient) {
+    public void createIngredient(@RequestBody ingredientsDTO ingredient) {
         ingredientsService.addIngredient(ingredient);
     }
 
     @PostMapping("{id}")
-    public void updateIngredient(int id, ingredientsDTO ingredient) {
+    public void updateIngredient(@PathVariable int id, @RequestBody ingredientsDTO ingredient) {
         ingredientsService.updateIngredient(id, ingredient);
     }
 
@@ -53,4 +48,18 @@ public class ingredientsController {
         ingredientsService.deleteIngredient(id);
     }
 
+    @GetMapping("/nom/{nom_ingredient}")
+    public ingredientsModel getIngredientByNom(@PathVariable String nom_ingredient) {
+        return ingredientsService.findIngredientByNom(nom_ingredient);
+    }
+
+    @DeleteMapping("/delete/{nom_ingredient}")
+    public void deleteIngredientByNom(@PathVariable String nom_ingredient) {
+        ingredientsService.deleteIngredientByNom(nom_ingredient);
+    }
+
+    @PostMapping("/update/{nom_ingredient}")
+    public void updateIngredientByNom(@PathVariable String nom_ingredient, @RequestBody ingredientsDTO ingredient) {
+        ingredientsService.updateIngredientByNom(nom_ingredient, ingredient);
+    }
 }

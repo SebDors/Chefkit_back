@@ -31,8 +31,8 @@ public class ingredientsService {
         ingredientsDao.deleteById((long) id);
     }
 
-    public ingredientsModel addIngredient(ingredientsDTO ingredientsDto) {
-        return ingredientsDao.save(ingredientsMapper.fromDto(ingredientsDto));
+    public void addIngredient(ingredientsDTO ingredientsDto) {
+        ingredientsDao.save(ingredientsMapper.fromDto(ingredientsDto));
     }
 
     public ingredientsModel updateIngredient(int id, ingredientsDTO ingredientsDto) {
@@ -44,5 +44,25 @@ public class ingredientsService {
 
     public int getIngredientCount() {
         return (int) ingredientsDao.count();
+    }
+
+    @Transactional(readOnly = true)
+    public ingredientsModel findIngredientByNom(String nom) {
+        return ingredientsDao.findByNomIngredientContainingIgnoreCase(nom);
+    }
+
+    public void deleteIngredientByNom(String nom) {
+        ingredientsDao.deleteByNomIngredientContainingIgnoreCase(nom);
+    }
+
+    public ingredientsModel updateIngredientByNom(String nom, ingredientsDTO ingredientsDto) {
+        ingredientsModel existingIngredient = ingredientsDao.findByNomIngredientContainingIgnoreCase(nom);
+        if (ingredientsDto.getNomIngredient() != null && !ingredientsDto.getNomIngredient().trim().isEmpty()) {
+            existingIngredient.setNomIngredient(ingredientsDto.getNomIngredient());
+        }
+        if (ingredientsDto.getCategorie() != null && !ingredientsDto.getCategorie().trim().isEmpty()) {
+            existingIngredient.setCategorie(ingredientsDto.getCategorie());
+        }
+        return ingredientsDao.save(existingIngredient);
     }
 }
