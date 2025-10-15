@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.takima.chefkit.DTO.usersDTO;
-
+import com.takima.chefkit.models.ingredientsModel;
 import com.takima.chefkit.models.usersModel;
 import com.takima.chefkit.services.usersService;
 
@@ -73,5 +73,10 @@ public class usersController {
     @DeleteMapping("/delete/{username}")
     public void deleteUserByUsername(@PathVariable String username) {
         usersService.deleteUserByUsername(username);
+    }
+
+    @GetMapping("/{userId}/fridge")
+    public List<ingredientsModel> getFridgeByUserId(@PathVariable Long userId) {
+        return usersService.getFridgeByUserId(userId);
     }
 }

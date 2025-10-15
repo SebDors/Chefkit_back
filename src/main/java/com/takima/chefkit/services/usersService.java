@@ -1,9 +1,11 @@
 package com.takima.chefkit.services;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.takima.chefkit.DTO.loginDTO;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.takima.chefkit.DAO.usersDAO;
 import com.takima.chefkit.DTO.usersDTO;
 import com.takima.chefkit.DTO.usersMapper;
+import com.takima.chefkit.models.ingredientsModel;
 import com.takima.chefkit.models.usersModel;
 
 @Service
@@ -102,5 +105,13 @@ public class usersService {
 
     public void deleteUserByUsername(String username) {
         usersDAO.deleteByNomUtilisateurContainingIgnoreCase(username);
+    }
+
+    public List<ingredientsModel> getFridgeByUserId(Long userId) {
+        Optional<usersModel> user = usersDAO.findById(userId);
+        if (user.isPresent()) {
+            return user.get().getFridge();
+        }
+        return Collections.emptyList();
     }
 }
