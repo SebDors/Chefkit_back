@@ -71,13 +71,13 @@ public class recettesService {
     }
 
     private void updateDtoToExistingModel(recettesDTO recetteDto, recettesModel existingRecette) {
-        if (recetteDto.getTitre() != null) {
+        if (recetteDto.getTitre() != null &&  !recetteDto.getTitre().isEmpty()) {
             existingRecette.setTitre(recetteDto.getTitre());
         }
-        if (recetteDto.getDescription() != null) {
+        if (recetteDto.getDescription() != null &&   !recetteDto.getDescription().isEmpty()) {
             existingRecette.setDescription(recetteDto.getDescription());
         }
-        if (recetteDto.getInstructions() != null) {
+        if (recetteDto.getInstructions() != null &&  !recetteDto.getInstructions().isEmpty()) {
             existingRecette.setInstructions(recetteDto.getInstructions());
         }
         if (recetteDto.getTempsPreparationMinutes() > 0) {
@@ -89,7 +89,7 @@ public class recettesService {
         if (recetteDto.getNombrePersonnes() > 0) {
             existingRecette.setNombrePersonnes(recetteDto.getNombrePersonnes());
         }
-        if (recetteDto.getPathImage() != null) {
+        if (recetteDto.getPathImage() != null &&  !recetteDto.getPathImage().isEmpty()) {
             existingRecette.setPathImage(recetteDto.getPathImage());
         }
     }
