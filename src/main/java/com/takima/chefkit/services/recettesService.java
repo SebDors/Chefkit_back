@@ -31,28 +31,67 @@ public class recettesService {
         return recettesDAO.findById((long) id).orElseThrow();
     }
 
+    @Transactional(readOnly = true)
+    public recettesDTO getRecetteByTitre(String titre) {
+        recettesModel recette = recettesDAO.findByTitre(titre);
+        return recettesMapper.toDto(recette);
+    }
+
     public List<IngredientDetailDTO> findIngredientsByRecipeId(int id) {
         return recettesDAO.findIngredientsByRecipeId((long) id);
     }
 
-    public void deleteRecette(int id) {
+    public void deleteRecetteById(int id) {
         recettesDAO.deleteById((long) id);
     }
 
-    public recettesModel addRecette(recettesDTO recetteDto) {
-        return recettesDAO.save(recettesMapper.fromDto(recetteDto));
+    public void deleteRecetteByTitre(String titre) {
+        recettesDAO.deleteByTitre(titre);
     }
 
-    public recettesModel updateRecette(int id, recettesDTO recetteDto) {
+    public void addRecette(recettesDTO recetteDto) {
+        recettesDAO.save(recettesMapper.fromDto(recetteDto));
+    }
+
+    public void updateRecetteById(int id, recettesDTO recetteDto) {
         recettesModel existingRecette = recettesDAO.findById((long) id).orElseThrow();
-        existingRecette.setTitre(recetteDto.getTitre());
-        existingRecette.setDescription(recetteDto.getDescription());
-        existingRecette.setInstructions(recetteDto.getInstructions());
-        existingRecette.setTempsPreparationMinutes(recetteDto.getTempsPreparationMinutes());
-        existingRecette.setTempsCuissonMinutes(recetteDto.getTempsCuissonMinutes());
-        existingRecette.setNombrePersonnes(recetteDto.getNombrePersonnes());
-        existingRecette.setPathImage(recetteDto.getPathImage());
-        return recettesDAO.save(existingRecette);
+        updateDtoToExistingModel(recetteDto, existingRecette);
+        recettesDAO.save(existingRecette);
+    }
+
+    public void updateRecetteByTitre(String Titre, recettesDTO recetteDto) {
+        recettesModel existingRecette = recettesDAO.findByTitre(Titre);
+        if (existingRecette != null) {
+            updateDtoToExistingModel(recetteDto, existingRecette);
+            recettesDAO.save(existingRecette);
+        } else {
+            throw new RuntimeException("Recette with titre " + Titre + " not found.");
+
+        }
+    }
+
+    private void updateDtoToExistingModel(recettesDTO recetteDto, recettesModel existingRecette) {
+        if (recetteDto.getTitre() != null) {
+            existingRecette.setTitre(recetteDto.getTitre());
+        }
+        if (recetteDto.getDescription() != null) {
+            existingRecette.setDescription(recetteDto.getDescription());
+        }
+        if (recetteDto.getInstructions() != null) {
+            existingRecette.setInstructions(recetteDto.getInstructions());
+        }
+        if (recetteDto.getTempsPreparationMinutes() > 0) {
+            existingRecette.setTempsPreparationMinutes(recetteDto.getTempsPreparationMinutes());
+        }
+        if (recetteDto.getTempsCuissonMinutes() > 0) {
+            existingRecette.setTempsCuissonMinutes(recetteDto.getTempsCuissonMinutes());
+        }
+        if (recetteDto.getNombrePersonnes() > 0) {
+            existingRecette.setNombrePersonnes(recetteDto.getNombrePersonnes());
+        }
+        if (recetteDto.getPathImage() != null) {
+            existingRecette.setPathImage(recetteDto.getPathImage());
+        }
     }
 
     public ResponseEntity<Integer> getRecetteCount() {

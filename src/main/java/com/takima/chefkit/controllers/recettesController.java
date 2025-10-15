@@ -37,6 +37,11 @@ public class recettesController {
         return recettesService.findRecetteById(id);
     }
 
+    @GetMapping("/titre/{titre}")
+    public recettesDTO getRecetteByTitre(@PathVariable String titre) {
+        return recettesService.getRecetteByTitre(titre);
+    }
+
     @GetMapping("/{id}/ingredients")
     public List<IngredientDetailDTO> getIngredientsByRecipeId(@PathVariable int id) {
         return recettesService.findIngredientsByRecipeId(id);
@@ -49,8 +54,11 @@ public class recettesController {
 
     @DeleteMapping("/{id}")
     public void deleteRecetteById(@PathVariable int id) {
-        recettesService.deleteRecette(id);
+        recettesService.deleteRecetteById(id);
     }
+
+    @DeleteMapping("/titre/{titre}")
+    public void deleteRecetteByTitre(@PathVariable String titre) {recettesService.deleteRecetteByTitre(titre);}
 
     @PostMapping("")
     public void createRecette(@RequestBody recettesDTO recetteDTO) {
@@ -58,7 +66,13 @@ public class recettesController {
     }
 
     @PostMapping("/{id}")
-    public void updateRecette(@PathVariable int id, @RequestBody recettesDTO recetteDTO) {
-        recettesService.updateRecette(id, recetteDTO);
+    public void updateRecetteById(@PathVariable int id, @RequestBody recettesDTO recetteDTO) {
+        recettesService.updateRecetteById(id, recetteDTO);
+    }
+
+    @PostMapping("/titre/{titre}")
+    public void updateRecetteByTitre(@PathVariable String titre, @RequestBody recettesDTO recetteDTO) {
+        System.out.println(recetteDTO);
+        recettesService.updateRecetteByTitre(titre, recetteDTO);
     }
 }

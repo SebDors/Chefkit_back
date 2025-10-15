@@ -18,4 +18,7 @@ public interface recettesDAO extends JpaRepository<recettesModel, Long> {
             "JOIN ingredients i ON ri.id_ingredient = i.id_ingredient " +
             "WHERE ri.id_recette = :recipeId")
     List<IngredientDetailDTO> findIngredientsByRecipeId(@Param("recipeId") Long recipeId);
+
+    recettesModel findByTitre(String titre);
+    void deleteByTitre(String titre);
 }
