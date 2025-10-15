@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.takima.chefkit.DTO.loginDTO;
+import com.takima.chefkit.DAO.ingredientsDAO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +23,11 @@ import com.takima.chefkit.models.usersModel;
 @Transactional
 public class usersService {
     private final usersDAO usersDAO;
+    private final ingredientsDAO ingredientsDAO;
 
-    public usersService(usersDAO usersDAO) {
+    public usersService(usersDAO usersDAO, ingredientsDAO ingredientsDAO) {
         this.usersDAO = usersDAO;
+        this.ingredientsDAO = ingredientsDAO;
     }
 
     @Transactional(readOnly = true)
@@ -113,5 +116,19 @@ public class usersService {
             return user.get().getFridge();
         }
         return Collections.emptyList();
+    }
+
+    public void addIngredientToFridge(Long userId, Long ingredientId) {
+        usersModel user = usersDAO.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec l'id " + userId));
+        ingredientsModel ingredient = ingredientsDAO.findById(ingredientId)
+                .orElseThrow(() -> new RuntimeException("Ingrédient non trouvé avec l'id " + ingredientId));
+
+        // Ajoute l'ingrédient au frigo de l'utilisateur s'il n'y est pas déjà
+        if (!user.getFridge().contains(ingredient)) {
+            user.getFridge().add(ingredient);
+            // Sauvegarde l'entité utilisateur mise à jour
+            usersDAO.save(user);
+        }
     }
 }

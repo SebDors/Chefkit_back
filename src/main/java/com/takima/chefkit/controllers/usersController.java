@@ -79,4 +79,10 @@ public class usersController {
     public List<ingredientsModel> getFridgeByUserId(@PathVariable Long userId) {
         return usersService.getFridgeByUserId(userId);
     }
+
+    @PostMapping("/{userId}/fridge")
+    public ResponseEntity<Void> addIngredientToFridge(@PathVariable Long userId, @RequestBody Long ingredientId) {
+        usersService.addIngredientToFridge(userId, ingredientId);
+        return ResponseEntity.ok().build();
+    }
 }
