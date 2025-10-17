@@ -7,6 +7,6 @@ import com.takima.chefkit.models.ingredientsModel;
 
 @Repository
 public interface ingredientsDAO extends JpaRepository<ingredientsModel, Long> {
-    ingredientsModel findByNomIngredientContainingIgnoreCase(String nomIngredient);
+    java.util.List<ingredientsModel> findByNomIngredientContainingIgnoreCase(String nomIngredient);
     void deleteByNomIngredientContainingIgnoreCase(String nomIngredient);
 }

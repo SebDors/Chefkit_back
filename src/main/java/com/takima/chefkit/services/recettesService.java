@@ -32,9 +32,8 @@ public class recettesService {
     }
 
     @Transactional(readOnly = true)
-    public recettesDTO getRecetteByTitre(String titre) {
-        recettesModel recette = recettesDAO.findByTitreContainingIgnoreCase(titre);
-        return recettesMapper.toDto(recette);
+    public List<recettesModel> findRecettesByTitre(String titre) {
+        return recettesDAO.findByTitreContainingIgnoreCase(titre);
     }
 
     public List<IngredientDetailDTO> findIngredientsByRecipeId(int id) {
@@ -60,8 +59,9 @@ public class recettesService {
     }
 
     public void updateRecetteByTitre(String Titre, recettesDTO recetteDto) {
-        recettesModel existingRecette = recettesDAO.findByTitreContainingIgnoreCase(Titre);
-        if (existingRecette != null) {
+        List<recettesModel> existingRecettes = recettesDAO.findByTitreContainingIgnoreCase(Titre);
+        if (!existingRecettes.isEmpty()) {
+            recettesModel existingRecette = existingRecettes.get(0);
             updateDtoToExistingModel(recetteDto, existingRecette);
             recettesDAO.save(existingRecette);
         } else {

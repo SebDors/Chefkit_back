@@ -1,7 +1,10 @@
 package com.takima.chefkit.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,8 +41,19 @@ public class recettesController {
     }
 
     @GetMapping("/titre/{titre}")
-    public recettesDTO getRecetteByTitre(@PathVariable String titre) {
-        return recettesService.getRecetteByTitre(titre);
+    public ResponseEntity<Object> getRecetteByTitre(@PathVariable String titre) {
+        List<recettesModel> recettes = recettesService.findRecettesByTitre(titre);
+        if (recettes.isEmpty()) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Recette not found");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        } else if (recettes.size() > 1) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Multiple recettes found, please be more specific");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(recettes.get(0), HttpStatus.OK);
+        }
     }
 
     @GetMapping("/{id}/ingredients")

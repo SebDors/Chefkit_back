@@ -47,7 +47,7 @@ public class ingredientsService {
     }
 
     @Transactional(readOnly = true)
-    public ingredientsModel findIngredientByNom(String nom) {
+    public List<ingredientsModel> findIngredientByNom(String nom) {
         return ingredientsDao.findByNomIngredientContainingIgnoreCase(nom);
     }
 
@@ -56,7 +56,12 @@ public class ingredientsService {
     }
 
     public ingredientsModel updateIngredientByNom(String nom, ingredientsDTO ingredientsDto) {
-        ingredientsModel existingIngredient = ingredientsDao.findByNomIngredientContainingIgnoreCase(nom);
+        List<ingredientsModel> existingIngredients = ingredientsDao.findByNomIngredientContainingIgnoreCase(nom);
+        if (existingIngredients.isEmpty()) {
+            // Or throw an exception
+            return null;
+        }
+        ingredientsModel existingIngredient = existingIngredients.get(0);
         if (ingredientsDto.getNomIngredient() != null && !ingredientsDto.getNomIngredient().trim().isEmpty()) {
             existingIngredient.setNomIngredient(ingredientsDto.getNomIngredient());
         }

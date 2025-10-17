@@ -1,9 +1,11 @@
 package com.takima.chefkit.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.takima.chefkit.DTO.loginDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,8 +42,19 @@ public class usersController {
     }
 
     @GetMapping("/username/{username}")
-    public usersModel getUserByUsername(@PathVariable String username) {
-        return usersService.findUserByUsername(username);
+    public ResponseEntity<Object> getUserByUsername(@PathVariable String username) {
+        List<usersModel> users = usersService.findUserByUsername(username);
+        if (users.isEmpty()) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "User not found");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        } else if (users.size() > 1) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Multiple users found, please be more specific");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(users.get(0), HttpStatus.OK);
+        }
     }
 
     @GetMapping("/count")

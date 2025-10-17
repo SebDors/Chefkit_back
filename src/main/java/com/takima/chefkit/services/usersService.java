@@ -41,8 +41,8 @@ public class usersService {
     }
 
     @Transactional(readOnly = true)
-    public usersModel findUserByUsername(String username) {
-        return usersDAO.findByNomUtilisateur(username);
+    public List<usersModel> findUserByUsername(String username) {
+        return usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
     }
 
     public void deleteUser(int id) {
@@ -66,11 +66,14 @@ public class usersService {
     }
 
     public ResponseEntity<Map<String, Object>> loginUsers(loginDTO loginDto) {
-        usersModel existingUser = usersDAO.findByNomUtilisateurContainingIgnoreCase(loginDto.getNomUtilisateur());
+        List<usersModel> existingUsers = usersDAO
+                .findByNomUtilisateurContainingIgnoreCase(loginDto.getNomUtilisateur());
 
-        if (existingUser == null) {
+        if (existingUsers.isEmpty()) {
             return ResponseEntity.status(404).body(Map.of("message", "Utilisateur non trouvé"));
         }
+
+        usersModel existingUser = existingUsers.get(0);
 
         if (existingUser.getMotDePasse().equals(loginDto.getMotDePasse())) {
             Map<String, Object> response = new HashMap<>();
@@ -88,8 +91,9 @@ public class usersService {
     }
 
     public void updateUserByUsername(String username, usersDTO usersDto) {
-        usersModel existingUser = usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
-        if (existingUser != null) {
+        List<usersModel> existingUsers = usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
+        if (!existingUsers.isEmpty()) {
+            usersModel existingUser = existingUsers.get(0);
             if (usersDto.getNomUtilisateur() != null && !usersDto.getNomUtilisateur().trim().isEmpty()) {
                 existingUser.setNomUtilisateur(usersDto.getNomUtilisateur());
             }
