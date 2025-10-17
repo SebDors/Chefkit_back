@@ -16,5 +16,4 @@ public class usersDTO {
     private String email;
     private String motDePasse;
     private String role;
-    private Instant dateCreation;
 }
