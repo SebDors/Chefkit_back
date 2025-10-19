@@ -88,14 +88,14 @@ public class usersController {
         usersService.deleteUserByUsername(username);
     }
 
-    @GetMapping("/{userId}/fridge")
-    public List<ingredientsModel> getFridgeByUserId(@PathVariable Long userId) {
-        return usersService.getFridgeByUserId(userId);
+    @GetMapping("/{username}/fridge")
+    public List<ingredientsModel> getFridgeByUsername(@PathVariable String username) {
+        return usersService.getFridgeByUsername(username);
     }
 
-    @PostMapping("/{userId}/fridge")
-    public ResponseEntity<Void> addIngredientToFridge(@PathVariable Long userId, @RequestBody Long ingredientId) {
-        usersService.addIngredientToFridge(userId, ingredientId);
+    @PostMapping("/{username}/fridge")
+    public ResponseEntity<Void> addIngredientToFridge(@PathVariable String username, @RequestBody Long ingredientId) {
+        usersService.addIngredientToFridgeByUsername(username, ingredientId);
         return ResponseEntity.ok().build();
     }
 }

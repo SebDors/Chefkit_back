@@ -114,24 +114,28 @@ public class usersService {
         usersDAO.deleteByNomUtilisateurContainingIgnoreCase(username);
     }
 
-    public List<ingredientsModel> getFridgeByUserId(Long userId) {
-        Optional<usersModel> user = usersDAO.findById(userId);
-        if (user.isPresent()) {
-            return user.get().getFridge();
+    public List<ingredientsModel> getFridgeByUsername(String username) {
+        List<usersModel> users = usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
+        if (!users.isEmpty()) {
+            return users.get(0).getFridge();
         }
         return Collections.emptyList();
     }
 
-    public void addIngredientToFridge(Long userId, Long ingredientId) {
-        usersModel user = usersDAO.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec l'id " + userId));
+    public void addIngredientToFridgeByUsername(String username, Long ingredientId) {
+        List<usersModel> users = usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
+        if (users.isEmpty()) {
+            throw new RuntimeException("Utilisateur non trouvé avec le nom d'utilisateur " + username);
+        }
+        usersModel user = users.get(0);
+
         ingredientsModel ingredient = ingredientsDAO.findById(ingredientId)
                 .orElseThrow(() -> new RuntimeException("Ingrédient non trouvé avec l'id " + ingredientId));
 
         // Ajoute l'ingrédient au frigo de l'utilisateur s'il n'y est pas déjà
         if (!user.getFridge().contains(ingredient)) {
             user.getFridge().add(ingredient);
-            // Sauvegarde l'entité utilisateur mise à jour
+            // La sauvegarde est gérée par @Transactional
             usersDAO.save(user);
         }
     }
