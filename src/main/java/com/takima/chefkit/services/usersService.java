@@ -1,11 +1,12 @@
 package com.takima.chefkit.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.takima.chefkit.DTO.loginDTO;
 import com.takima.chefkit.DAO.ingredientsDAO;
@@ -36,8 +37,8 @@ public class usersService {
     }
 
     @Transactional(readOnly = true)
-    public usersModel findUserById(int id) {
-        return usersDAO.findById((long) id).orElseThrow();
+    public usersModel findUserById(Long id) {
+        return usersDAO.findById(id).orElseThrow();
     }
 
     @Transactional(readOnly = true)
@@ -45,8 +46,8 @@ public class usersService {
         return usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
     }
 
-    public void deleteUser(int id) {
-        usersDAO.deleteById((long) id);
+    public void deleteUser(Long id) {
+        usersDAO.deleteById(id);
     }
 
     public usersModel addUsers(usersDTO userDto) {
@@ -57,8 +58,8 @@ public class usersService {
         }
     }
 
-    public void updateUsersById(int id, usersDTO userDto) {
-        usersModel existingUser = usersDAO.findById((long) id).orElseThrow();
+    public void updateUsersById(Long id, usersDTO userDto) {
+        usersModel existingUser = usersDAO.findById(id).orElseThrow();
         existingUser.setNomUtilisateur(userDto.getNomUtilisateur());
         existingUser.setEmail(userDto.getEmail());
         existingUser.setMotDePasse(userDto.getMotDePasse());
@@ -138,5 +139,25 @@ public class usersService {
             // La sauvegarde est gérée par @Transactional
             usersDAO.save(user);
         }
+    }
+
+    public void updateFridgeByUsername(String username, List<Long> ingredientIds) {
+        List<usersModel> users = usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
+        if (users.isEmpty()) {
+            throw new RuntimeException("Utilisateur non trouvé avec le nom d'utilisateur " + username);
+        }
+        usersModel user = users.get(0);
+
+        // Vide le frigo actuel
+        user.getFridge().clear();
+
+        // Si la liste d'IDs n'est pas vide, on la remplit
+        if (ingredientIds != null && !ingredientIds.isEmpty()) {
+            List<ingredientsModel> ingredients = ingredientsDAO.findAllById(ingredientIds);
+            user.setFridge(ingredients);
+        }
+
+        // Sauvegarde l'utilisateur avec son frigo mis à jour
+        usersDAO.save(user);
     }
 }

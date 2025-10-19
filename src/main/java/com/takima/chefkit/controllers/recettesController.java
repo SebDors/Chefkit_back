@@ -36,7 +36,7 @@ public class recettesController {
     }
 
     @GetMapping("/{id}")
-    public recettesModel getRecetteById(@PathVariable int id) {
+    public recettesModel getRecetteById(@PathVariable Long id) {
         return recettesService.findRecetteById(id);
     }
 
@@ -57,7 +57,7 @@ public class recettesController {
     }
 
     @GetMapping("/{id}/ingredients")
-    public List<IngredientDetailDTO> getIngredientsByRecipeId(@PathVariable int id) {
+    public List<IngredientDetailDTO> getIngredientsByRecipeId(@PathVariable Long id) {
         return recettesService.findIngredientsByRecipeId(id);
     }
 
@@ -67,7 +67,7 @@ public class recettesController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteRecetteById(@PathVariable int id) {
+    public void deleteRecetteById(@PathVariable Long id) {
         recettesService.deleteRecetteById(id);
     }
 
@@ -80,7 +80,7 @@ public class recettesController {
     }
 
     @PostMapping("/{id}")
-    public void updateRecetteById(@PathVariable int id, @RequestBody recettesDTO recetteDTO) {
+    public void updateRecetteById(@PathVariable Long id, @RequestBody recettesDTO recetteDTO) {
         recettesService.updateRecetteById(id, recetteDTO);
     }
 

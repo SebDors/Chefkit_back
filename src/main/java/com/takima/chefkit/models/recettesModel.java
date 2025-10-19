@@ -22,7 +22,7 @@ import lombok.Setter;
 public class recettesModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRecette;
+    private Long idRecette;
 
     @Column
     private String titre;

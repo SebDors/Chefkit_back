@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class recettesDTO {
-    private int idRecette;
+    private Long idRecette;
     private String titre;
     private String description;
     private String instructions;

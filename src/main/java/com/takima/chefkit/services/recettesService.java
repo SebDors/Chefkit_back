@@ -27,8 +27,8 @@ public class recettesService {
     }
 
     @Transactional(readOnly = true)
-    public recettesModel findRecetteById(int id) {
-        return recettesDAO.findById((long) id).orElseThrow();
+    public recettesModel findRecetteById(Long id) {
+        return recettesDAO.findById(id).orElseThrow();
     }
 
     @Transactional(readOnly = true)
@@ -36,12 +36,12 @@ public class recettesService {
         return recettesDAO.findByTitreContainingIgnoreCase(titre);
     }
 
-    public List<IngredientDetailDTO> findIngredientsByRecipeId(int id) {
-        return recettesDAO.findIngredientsByRecipeId((long) id);
+    public List<IngredientDetailDTO> findIngredientsByRecipeId(Long id) {
+        return recettesDAO.findIngredientsByRecipeId(id);
     }
 
-    public void deleteRecetteById(int id) {
-        recettesDAO.deleteById((long) id);
+    public void deleteRecetteById(Long id) {
+        recettesDAO.deleteById(id);
     }
 
     public void deleteRecetteByTitre(String titre) {
@@ -52,8 +52,8 @@ public class recettesService {
         recettesDAO.save(recettesMapper.fromDto(recetteDto));
     }
 
-    public void updateRecetteById(int id, recettesDTO recetteDto) {
-        recettesModel existingRecette = recettesDAO.findById((long) id).orElseThrow();
+    public void updateRecetteById(Long id, recettesDTO recetteDto) {
+        recettesModel existingRecette = recettesDAO.findById(id).orElseThrow();
         updateDtoToExistingModel(recetteDto, existingRecette);
         recettesDAO.save(existingRecette);
     }

@@ -28,7 +28,7 @@ public class ingredientsController {
     }
 
     @GetMapping("{id}")
-    public ingredientsModel getIngredientById(int id) {
+    public ingredientsModel getIngredientById(@PathVariable Long id) {
         return ingredientsService.findIngredientById(id);
     }
 
@@ -43,12 +43,12 @@ public class ingredientsController {
     }
 
     @PostMapping("{id}")
-    public void updateIngredient(@PathVariable int id, @RequestBody ingredientsDTO ingredient) {
+    public void updateIngredient(@PathVariable Long id, @RequestBody ingredientsDTO ingredient) {
         ingredientsService.updateIngredient(id, ingredient);
     }
 
     @DeleteMapping("{id}")
-    public void deleteIngredient(int id) {
+    public void deleteIngredient(@PathVariable Long id) {
         ingredientsService.deleteIngredient(id);
     }
 

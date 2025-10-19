@@ -28,7 +28,7 @@ public class ingredientsModel {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idIngredient;
+    private Long idIngredient;
     @Column
     private String nomIngredient;
     @Column

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +38,7 @@ public class usersController {
     }
 
     @GetMapping("/{id}")
-    public usersModel getuserById(@PathVariable int id) {
+    public usersModel getuserById(@PathVariable Long id) {
         return usersService.findUserById(id);
     }
 
@@ -68,7 +69,7 @@ public class usersController {
     }
 
     @PostMapping("/{id}")
-    public void updateUserById(@PathVariable int id, @RequestBody usersDTO usersDto) {
+    public void updateUserById(@PathVariable Long id, @RequestBody usersDTO usersDto) {
         usersService.updateUsersById(id, usersDto);
     }
 
@@ -96,6 +97,12 @@ public class usersController {
     @PostMapping("/{username}/fridge")
     public ResponseEntity<Void> addIngredientToFridge(@PathVariable String username, @RequestBody Long ingredientId) {
         usersService.addIngredientToFridgeByUsername(username, ingredientId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{username}/fridge")
+    public ResponseEntity<Void> updateFridge(@PathVariable String username, @RequestBody List<Long> ingredientIds) {
+        usersService.updateFridgeByUsername(username, ingredientIds);
         return ResponseEntity.ok().build();
     }
 }

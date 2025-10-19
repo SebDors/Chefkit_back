@@ -23,20 +23,20 @@ public class ingredientsService {
         return ingredientsDao.findAll();
     }
 
-    public ingredientsModel findIngredientById(int id) {
-        return ingredientsDao.findById((long) id).orElseThrow();
+    public ingredientsModel findIngredientById(Long id) {
+        return ingredientsDao.findById(id).orElseThrow();
     }
 
-    public void deleteIngredient(int id) {
-        ingredientsDao.deleteById((long) id);
+    public void deleteIngredient(Long id) {
+        ingredientsDao.deleteById(id);
     }
 
     public void addIngredient(ingredientsDTO ingredientsDto) {
         ingredientsDao.save(ingredientsMapper.fromDto(ingredientsDto));
     }
 
-    public ingredientsModel updateIngredient(int id, ingredientsDTO ingredientsDto) {
-        ingredientsModel existingIngredient = ingredientsDao.findById((long) id).orElseThrow();
+    public ingredientsModel updateIngredient(Long id, ingredientsDTO ingredientsDto) {
+        ingredientsModel existingIngredient = ingredientsDao.findById(id).orElseThrow();
         existingIngredient.setNomIngredient(ingredientsDto.getNomIngredient());
         existingIngredient.setCategorie(ingredientsDto.getCategorie());
         return ingredientsDao.save(existingIngredient);

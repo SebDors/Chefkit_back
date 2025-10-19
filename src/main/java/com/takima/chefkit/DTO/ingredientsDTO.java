@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 @Builder
 public class ingredientsDTO {
-    private int idIngredient;
+    private Long idIngredient;
     private String nomIngredient;
     private String categorie;
 }
