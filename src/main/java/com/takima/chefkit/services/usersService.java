@@ -11,13 +11,16 @@ import java.util.stream.Collectors;
 import com.takima.chefkit.DTO.loginDTO;
 import com.takima.chefkit.DAO.ingredientsDAO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.takima.chefkit.DAO.usersDAO;
+import com.takima.chefkit.DAO.recettesDAO;
 import com.takima.chefkit.DTO.usersDTO;
 import com.takima.chefkit.DTO.usersMapper;
 import com.takima.chefkit.models.ingredientsModel;
+import com.takima.chefkit.models.recettesModel;
 import com.takima.chefkit.models.usersModel;
 
 @Service
@@ -25,10 +28,14 @@ import com.takima.chefkit.models.usersModel;
 public class usersService {
     private final usersDAO usersDAO;
     private final ingredientsDAO ingredientsDAO;
+    private final recettesDAO recettesDAO;
+    private final JdbcTemplate jdbcTemplate;
 
-    public usersService(usersDAO usersDAO, ingredientsDAO ingredientsDAO) {
+    public usersService(usersDAO usersDAO, ingredientsDAO ingredientsDAO, recettesDAO recettesDAO, JdbcTemplate jdbcTemplate) {
         this.usersDAO = usersDAO;
         this.ingredientsDAO = ingredientsDAO;
+        this.recettesDAO = recettesDAO;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Transactional(readOnly = true)
@@ -159,5 +166,29 @@ public class usersService {
 
         // Sauvegarde l'utilisateur avec son frigo mis à jour
         usersDAO.save(user);
+    }
+
+    public List<recettesModel> findRecipesByFridge(String username) {
+        List<usersModel> users = usersDAO.findByNomUtilisateurContainingIgnoreCase(username);
+        if (users.isEmpty()) {
+            throw new RuntimeException("Utilisateur non trouvé avec le nom d'utilisateur " + username);
+        }
+        usersModel user = users.get(0);
+        Long userId = user.getIdUtilisateur();
+
+        String sql = "SELECT r.id_recette " +
+                     "FROM recettes r " +
+                     "WHERE NOT EXISTS (" +
+                     "    SELECT ri.id_ingredient " +
+                     "    FROM recette_ingredients ri " +
+                     "    WHERE ri.id_recette = r.id_recette " +
+                     "    AND ri.id_ingredient NOT IN (" +
+                     "        SELECT fu.id_ingredient " +
+                     "        FROM frigo_utilisateur fu " +
+                     "        WHERE fu.id_utilisateur = ?" +
+                     "    )" +
+                     ")";
+        List<Long> recipeIds = jdbcTemplate.queryForList(sql, new Object[]{userId}, Long.class);
+        return recettesDAO.findAllById(recipeIds);
     }
 }

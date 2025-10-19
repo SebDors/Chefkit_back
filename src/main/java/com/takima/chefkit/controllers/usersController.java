@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.takima.chefkit.DTO.usersDTO;
 import com.takima.chefkit.models.ingredientsModel;
 import com.takima.chefkit.models.usersModel;
+import com.takima.chefkit.models.recettesModel;
 import com.takima.chefkit.services.usersService;
 
 @RestController
@@ -104,5 +105,10 @@ public class usersController {
     public ResponseEntity<Void> updateFridge(@PathVariable String username, @RequestBody List<Long> ingredientIds) {
         usersService.updateFridgeByUsername(username, ingredientIds);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{username}/recipes")
+    public List<recettesModel> getRecipesByFridge(@PathVariable String username) {
+        return usersService.findRecipesByFridge(username);
     }
 }
