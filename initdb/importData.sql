@@ -372,15 +372,15 @@ VALUES
     (1, 6, '1', 'pincée'), -- Poivre noir
     (1, 20, '0.5', 'unité'), -- Citron
     -- Pizza Regina (recette_id=2)
-    (2, 61, '1', 'unité'), -- Pate à pizza
-    (2, 183, '200', 'g'), -- Sauce Tomate (CORRIGÉ: ID 199 au lieu de 200)
-    (2, 66, '125', 'g'), -- Mozzarella
+    (2, 60, '1', 'unité'), -- Pate à pizza
+    (2, 173, '200', 'g'), -- Sauce Tomate (CORRIGÉ: ID 199 au lieu de 200)
+    (2, 65, '125', 'g'), -- Mozzarella
     (2, 25, '2', 'tranches'), -- Jambon
     (2, 31, '50', 'g'), -- Champignons
     -- Soupe froide de concombre (recette_id=3)
     (3, 21, '1', 'unité'), -- Concombre
     (3, 35, '1', 'pot'), -- Yaourt
-    (3, 180, '10', 'feuilles'), -- Menthe
+    (3, 168, '10', 'feuilles'), -- Menthe
     (3, 5, '1', 'pincée'), -- Sel
     (3, 6, '1', 'pincée'), -- Poivre noir
     -- Pancakes aux myrtilles (recette_id=4)
@@ -391,7 +391,7 @@ VALUES
     (4, 15, '2', 'unités'), -- Œufs
     (4, 12, '30', 'cl'), -- Lait
     (4, 11, '50', 'g'), -- Beurre
-    (4, 64, '100', 'g'), -- Myrtille
+    (4, 63, '100', 'g'), -- Myrtille
     -- Moelleux au chocolat (recette_id=5)
     (5, 17, '200', 'g'), -- Chocolat
     (5, 11, '150', 'g'), -- Beurre
