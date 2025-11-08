@@ -176,19 +176,18 @@ public class usersService {
         usersModel user = users.get(0);
         Long userId = user.getIdUtilisateur();
 
-        String sql = "SELECT r.id_recette " +
-                     "FROM recettes r " +
-                     "WHERE NOT EXISTS (" +
-                     "    SELECT ri.id_ingredient " +
-                     "    FROM recette_ingredients ri " +
-                     "    WHERE ri.id_recette = r.id_recette " +
-                     "    AND ri.id_ingredient NOT IN (" +
-                     "        SELECT fu.id_ingredient " +
-                     "        FROM frigo_utilisateur fu " +
-                     "        WHERE fu.id_utilisateur = ?" +
-                     "    )" +
-                     ")";
+        String sql = "SELECT r.id_recette FROM recettes r " +
+                "JOIN recette_ingredients ri ON r.id_recette = ri.id_recette " +
+                "LEFT JOIN frigo_utilisateur fu ON ri.id_ingredient = fu.id_ingredient AND fu.id_utilisateur = ? " +
+                "GROUP BY r.id_recette " +
+                "HAVING CAST(COUNT(fu.id_ingredient) AS REAL) / COUNT(ri.id_ingredient) >= 0.5";
+
         List<Long> recipeIds = jdbcTemplate.queryForList(sql, new Object[]{userId}, Long.class);
+
+        if (recipeIds.isEmpty()) {
+            return Collections.emptyList();
+        }
+
         return recettesDAO.findAllById(recipeIds);
     }
 }
