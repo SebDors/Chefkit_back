@@ -355,6 +355,69 @@ VALUES (
         45,
         6,
         '/assets/images/recipe-lasagnes_aux_légumes_de_soleil.jpg'
+    ),
+    (
+        'Poke bowl végétarien',
+        'Un bol coloré et sain avec du riz, des légumes frais et du tofu mariné.',
+        '1. Faites cuire le riz selon les instructions du paquet. 2. Pendant ce temps, préparez les légumes (avocat, concombre, carotte) en les coupant en dés. 3. Faites mariner le tofu dans de la sauce soja et du gingembre. 4. Dans un bol, disposez le riz, les légumes et le tofu. 5. Arrosez de sauce soja et servez frais.',
+        30,
+        15,
+        1,
+        '/assets/images/recipe-vegan_poke_bowl.jpg'
+    ),
+    (
+        'Tarte tatin aux pommes',
+        'Une tarte renversée aux pommes caramélisées, un dessert classique français.',
+        '1. Préchauffez le four à 180°C. 2. Dans une poêle, faites fondre le sucre jusqu''à obtenir un caramel doré. 3. Ajoutez les pommes coupées en quartiers et faites-les cuire dans le caramel pendant quelques minutes. 4. Disposez les pommes caramélisées dans un moule à tarte et recouvrez-les de pâte brisée. 5. Enfournez pendant 30-35 minutes jusqu''à ce que la pâte soit dorée. 6. Laissez refroidir légèrement avant de démouler en retournant la tarte sur une assiette.',
+        20,
+        35,
+        6,
+        '/assets/images/recipe-tarte_tatin_aux_pommes.jpg'
+    ),
+    (
+        'Tacos au poulet',
+        'Des tacos savoureux garnis de poulet épicé, de légumes frais et de sauce.',
+        '1. Faites cuire les aiguillettes de poulet avec des épices mexicaines. 2. Réchauffez les tortillas de maïs. 3. Garnissez chaque tortilla avec le poulet, de la laitue, des tomates, du fromage et de la sauce.',
+        20,
+        10,
+        4,
+        '/assets/images/recipe-tacos_poulet.jpg'
+    ),
+    (
+        'Soupe lentilles corail coco',
+        'Une soupe réconfortante à base de lentilles corail et de lait de coco, parfumée aux épices.',
+        '1. Rincez les lentilles corail. 2. Dans une casserole, faites revenir l''ail et l''échalote hachés dans un peu d''huile. 3. Ajoutez les lentilles, le lait de coco, le bouillon de légumes, le curry, le sel et le poivre. 4. Laissez mijoter pendant 20-25 minutes jusqu''à ce que les lentilles soient tendres. 5. Mixez la soupe jusqu''à obtenir une consistance lisse et servez chaud.',
+        10, 
+        15,
+        4,
+        '/assets/images/recipe-soupe_lentilles_corail_ coco.jpg'
+    ),
+    (
+        'Pates à la bolognaise',
+        'Des pâtes savoureuses servies avec une sauce bolognaise riche en viande et en tomates.',
+        '1. Faites cuire les pâtes selon les instructions du paquet. 2. Dans une poêle, faites revenir l''oignon et l''ail hachés dans un peu d''huile. 3. Ajoutez la viande hachée et faites-la cuire jusqu''à ce qu''elle soit dorée. 4. Incorporez la sauce tomate, le sel, le poivre et les herbes de Provence. Laissez mijoter pendant 15-20 minutes. 5. Servez la sauce bolognaise sur les pâtes chaudes, garnie de parmesan râpé.',
+        20,
+        15,
+        4,
+        '/assets/images/recipe-pasta.jpg'
+    ),
+    (
+        'Panacotta à la vanille',
+        'Un dessert crémeux à base de lait, de crème et de sucre, parfumé à la vanille.',
+        '1. Dans une casserole, faites chauffer le lait et la crème avec la vanille. 2. Dans un bol, mélangez le sucre et la gélatine. 3. Incorporez le mélange de lait chaud au mélange de sucre et de gélatine. 4. Versez dans des verrines et laissez refroidir au réfrigérateur pendant au moins 4 heures.',
+        20,
+        15,
+        4,
+        '/assets/images/recipe-panna_cotta.jpg'
+    ),
+    (
+        'Gratin de chou-fleur',
+        'Un gratin savoureux à base de chou-fleur, de béchamel et de fromage râpé.',
+        '1. Préchauffez le four à 180°C. 2. Faites cuire le chou-fleur à la vapeur jusqu''à ce qu''il soit tendre. 3. Préparez la béchamel en chauffant le lait avec du beurre et de la farine. 4. Dans un plat à gratin, disposez le chou-fleur et nappez-le de béchamel. 5. Saupoudrez de fromage râpé et enfournez pendant 25-30 minutes jusqu''à ce que le gratin soit doré.',
+        20,
+        30,
+        4,
+        '/assets/images/recipe-chou_fleur_fromage.jpg'
     );
 
 INSERT INTO
@@ -444,8 +507,58 @@ VALUES
     (11, 23, '1', 'poivron'), -- Poivron
     (11, 173, '400', 'g'), -- Sauce Tomate
     (11, 178, '500', 'ml'), -- Bechamel
-    (11, 66, '100', 'g');
--- Fromage
+    (11, 66, '100', 'g'), -- Fromage
+    -- Poke bowl végétarien (recette_id=12)
+    (12, 27, '200', 'g'), -- Riz
+    (12, 19, '1', 'unité'), -- Avocat
+    (12, 21, '0.5', 'concombre'), -- Concombre
+    (12, 22, '1', 'carotte'), -- Carotte
+    (12, 172, '100', 'g'), -- Tofu
+    (12, 57, '30', 'ml'), -- Sauce soja
+    (12, 45, '1', 'pincée'), -- Gingembre
+    -- Tarte tatin aux pommes (recette_id=13)
+    (13, 94, '6', 'pommes'), -- Pomme
+    (13, 13, '150', 'g'), -- Sucre
+    (13, 81, '1', 'pate brisée'), -- Pate brisée
+    -- Tacos au poulet (recette_id=14)
+    (14, 152, '400', 'g'), -- Aiguillettes de poulet
+    (14, 165, '8', 'tortillades de mais'), -- Tortillade de mais
+    (14, 139, '100', 'g'), -- Salade
+    (14, 1, '1', 'tomate'), -- Tomate
+    (14, 24, '100', 'g'), -- Fromage
+    (14, 5, '1', 'pincée'), -- Sel
+    (14, 6, '1', 'pincée'), -- Poivre noir
+    -- Soupe lentilles corail coco (recette_id=15)
+    (15, 180, '200', 'g'), -- Lentilles de corail
+    (15, 162, '400', 'ml'), -- Lait de coco
+    (15, 181, '1', 'bouillon de legumes'), -- Bouillon de legumes
+    (15, 179, '1', 'gousse'), -- Ail
+    (15, 163, '1', 'échalote'), -- Echalote
+    (15, 42, '1', 'cuillère à soupe'), -- Curry
+    (15, 5, '1', 'pincée'), -- Sel
+    (15, 6, '1', 'pincée'), -- Poivre noir
+    -- Pates à la bolognaise (recette_id=16)
+    (16, 28, '300', 'g'), -- Pates
+    (16, 2, '1', 'oignon'), -- Oignon
+    (16, 179, '1', 'gousse'), -- Ail
+    (16, 109, '300', 'g'), -- Steak haché
+    (16, 173, '400', 'g'), -- Sauce Tomate
+    (16, 5, '1', 'pincée'), -- Sel
+    (16, 6, '1', 'pincée'), -- Poivre noir
+    (16, 137, '1', 'cuillère à café'), -- Herbes de Provence
+    -- Panacotta à la vanille (recette_id=17)
+    (17, 12, '250', 'ml'), -- Lait
+    (17, 141, '250', 'ml'), -- Crème liquide
+    (17, 18, '1', 'gousse'), -- Vanille
+    (17, 13, '80', 'g'), -- Sucre
+    (17, 142, '3', 'feuilles'), -- Gelatine
+    -- Gratin de chou-fleur (recette_id=18)
+    (18, 120, '1', 'chou-fleur'), -- Chou-fleur
+    (18, 178, '500', 'ml'), -- Bechamel
+    (18, 24, '100', 'g'), -- Fromage
+    (18, 5, '1', 'pincée'), -- Sel
+    (18, 6, '1', 'pincée'); -- Poivre noir
+
 
 INSERT INTO
     frigo_utilisateur (id_utilisateur, id_ingredient)
