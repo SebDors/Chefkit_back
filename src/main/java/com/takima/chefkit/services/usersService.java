@@ -1,12 +1,10 @@
 package com.takima.chefkit.services;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.takima.chefkit.DTO.loginDTO;
 import com.takima.chefkit.DAO.ingredientsDAO;
@@ -31,7 +29,8 @@ public class usersService {
     private final recettesDAO recettesDAO;
     private final JdbcTemplate jdbcTemplate;
 
-    public usersService(usersDAO usersDAO, ingredientsDAO ingredientsDAO, recettesDAO recettesDAO, JdbcTemplate jdbcTemplate) {
+    public usersService(usersDAO usersDAO, ingredientsDAO ingredientsDAO, recettesDAO recettesDAO,
+            JdbcTemplate jdbcTemplate) {
         this.usersDAO = usersDAO;
         this.ingredientsDAO = ingredientsDAO;
         this.recettesDAO = recettesDAO;
@@ -182,7 +181,7 @@ public class usersService {
                 "GROUP BY r.id_recette " +
                 "HAVING CAST(COUNT(fu.id_ingredient) AS REAL) / COUNT(ri.id_ingredient) >= 0.5";
 
-        List<Long> recipeIds = jdbcTemplate.queryForList(sql, new Object[]{userId}, Long.class);
+        List<Long> recipeIds = jdbcTemplate.queryForList(sql, new Object[] { userId }, Long.class);
 
         if (recipeIds.isEmpty()) {
             return Collections.emptyList();
