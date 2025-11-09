@@ -1,13 +1,8 @@
 -- =============================================================================
 -- SCRIPT DE CRÉATION DE LA BASE DE DONNÉES POUR L'APPLICATION DE RECETTES
--- SGBD: PostgreSQL
 --
 -- NOTE: Ce script supprime les tables si elles existent déjà avant de les recréer.
 -- =============================================================================
-
--- Il est recommandé de créer la base de données séparément avec la commande :
--- CREATE DATABASE recipe_app;
--- Puis de se connecter à cette base de données pour exécuter le reste du script.
 
 -- =============================================================================
 -- SECTION 1: SUPPRESSION DES TABLES EXISTANTES
